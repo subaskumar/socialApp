@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>InfinitySocial</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://static.fontawesome.com/css/fontawesome-app.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.2.0/css/all.css">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    {% block main_head %}
+    {% endblock main_head %}
+</head>
+<body>
+    {% load poll_extras %}
+    <style>
+      .autoCompleteList{
+        z-index:1000;
+      }
+    </style>
+    <div class="navbar-fixed" style="z-index: 100; margin-bottom: 20px;">
+        <nav class="blue">
+          <div class="nav-wrapper">
+            <a href="{% url 'home' %}" data-activates="mobile-demo" class="button-collapse show-on-large">
+                <i class="far fa-home"></i>
+            </a>
+            <ul class="left search" style="width: 50%; padding-left: 100px;">
+              <form action="{% url 'search' %}" method="post" style="display: flex; justify-content: center;">
+                {% csrf_token %}
+                <input type="text" name="q" style="border-bottom: 1px solid white; padding-left: 10px;" placeholder="Search friends" id="search_friend" required>
+                <button type="submit" style="background-color: transparent; border: none; color: greenyellow;"><i class="fa fa-search" ></i></button>
+              </form>
+            </ul>
+            <ul class="right" style="padding-right: 50px;">
+                <li>
+                    <a href="{% url 'profile' request.user.id %}">
+                        <i class="fal fa-user"></i>
+                    </a>
+                  </li>
+              <li><a href="#"> <i class="far fa-bell"></i></a></li>
+
+              <li><a href="{% url 'logout' %}" style="color: green;"> <i class="fal fa-sign-out-alt"></i></a></li>
+             
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+      <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
+        <script>
+          $( function() {
+            var availableTags = [
+        
+            ];
+            $( "#search_friend" ).autocomplete({
+              source: "{% url 'search' %}"
+            });
+          } );
+          </script>
+
+    {% block body %}
+    {% endblock %}
+                 
+
+    
+</body>
+</html>

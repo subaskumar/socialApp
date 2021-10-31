@@ -1,0 +1,160 @@
+{% extends 'user/base.html'%}
+{% load poll_extras %}
+
+{% block main_head %}
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<link href="{% static 'css/profile.css' %}" rel="stylesheet">
+<link href="{% static 'css/home.css' %}" rel="stylesheet">
+	<style>
+        #header {
+
+          height: 200px;
+          background: url({{user.profile.cover_image.url}}?auto=compress&cs=tinysrgb&dpr=1&w=500);
+          background-size: cover;
+          background-position: center center;
+          -webkit-transition: all .08s linear;
+          transition: all .08s linear;
+        }
+    </style>
+    <script type="text/javascript">
+    	function DisplayMenu(btnid) {
+    		ids = ['posts' ,'about', 'changePass']
+    		for(id in ids){
+    			// console.log(ids[id])
+    			if(ids[id] == btnid)
+    			{
+    				document.getElementById(ids[id]).style.display = 'block';
+    				continue;
+    			}
+    			document.getElementById(ids[id]).style.display = 'none';
+    		}
+    	}
+    </script>
+
+{% endblock main_head %}
+
+{% block body %}
+<div class="container-fluid">
+	<div class="mt-1" style="padding: 10px 250px;">
+        <div id="header">
+          {% if useritself %}
+          <form id="cover_image_form" method='post' action="#" enctype="multipart/form-data">
+              {% csrf_token %}
+              <a style="position: absolute; font-size: 30px; width: 13px; background-color: blueviolet;" class="btn" onclick="$('#cover_image').click()"><i class="fa fa-pencil"></i></a>
+              <input type="file" accept="image/*" name="cover_image" id="cover_image" style="visibility: hidden;" onchange="$('#cover_image_form').submit()">
+            </form>
+          {% endif %}
+        </div>
+          <div id="profile">
+            <div class="image">
+            <img src="{{user.profile.profile_pic.url}}" alt="" />
+            {% if useritself %}
+            <form id="profile_pic_form" method='post' action="#" enctype="multipart/form-data">
+              {% csrf_token %}
+              <input type="file" accept="image/*" name="profile_pic" id="profile_pic" style="visibility: hidden;" onchange="$('#profile_pic_form').submit()">
+              <a style="position: absolute; top: 0; right: 4px; width: 10px; background-color: blueviolet;" class="btn" onclick="$('#profile_pic').click()"><i class="fa fa-pencil"></i></a>
+            </form>
+            {% endif %}
+            </div>
+            <div class="name" id="name">Name : {{user.name}} </div>
+            <div class="nickname"> Email : {{user.email}} </div>
+            <div class="bottom">
+            <a class="following" href="{% url 'following' user.id %}" >
+              <span class="count" id="following_count">{{user.profile.following.count}}</span>
+              <b>following</b>
+            </a>
+            <a class="followers" href="{% url 'follower' user.id %}" >
+                <span class="count" id="followers_count">{{user.profile.followers.count}}</span>
+                <b>followers</b>
+            </a>
+            {% if not useritself %}
+            <a class="followers" href="{% url 'mutual' user.id %}" >
+                <span class="count" id="followers_count">{{mutual.count}}</span>
+                <b>mutual friends</b>
+            </a>
+            {% endif %}
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-3">
+                <div class="card">
+              <a class="btn" onclick="DisplayMenu('posts')" href="#posts">Posts</a>
+              <a class="btn" onclick="DisplayMenu('about')" href="#about">About {{user.first_name}}</a>
+              {% if useritself %}
+                    <a class="btn" onclick="DisplayMenu('changePass')" href="#changePass">Change Password</a>
+              {% endif %}
+                </div>
+            </div>                                           
+        </div>
+    </div>
+
+    <!-- recommended post row -->
+  {% for post in posts %}
+  <div class="row">
+    <div class="col s12 offset-l3 l6">
+      <div class="card recommended-post">
+        <div class="card-header">
+          <div class="top-row">
+            <div class="top-row-left">
+              <img src="{{post.user.profile.profile_pic.url}}" alt="avatar" style="width:35px; height:35px;" class="circle responsive-img">
+              <div class="user-post grey-text text-darken-1">
+                <p class="">
+                  <span class="username black-text text-darken-1">
+                    <a href="{% url 'profile' post.user.id %}">{{post.user.name}}</a>
+                  </span> 
+                  <!--with
+                  <span class="shared-name black-text text-darken-1">
+                      aaa.......................
+                  </span> -->
+                </p>
+                <span> {{post.created_at|timesince}} ago </span>
+                <i class="tiny material-icons globe">public</i>
+              </div>
+            </div>
+            <span class="black-text">
+              <i class="material-icons right">more_horiz</i>
+            </span>
+          </div>
+          <div class="user-content">
+            <p>{{post.text}}</p>
+          </div>
+        </div>
+        {% if post.picture %}
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" alt="post-image" src="{{post.picture.url}}">
+        </div>
+        {% endif %}
+        <div class="card-content">
+          <div class="post-stats row grey-text text-darken-4">
+            <div class="emojis left">
+              <span class="emoji love">&#9829; </span>
+              <span class="emoji like">&#128402; </span>
+              <span>{{post.likes.count}}</span>
+            </div>
+            <div class="right">
+              <span>{{post.comment.count}} comments </span>
+            </div>
+          </div>
+          <div class="card-action card-footer">
+            <div>
+              <i class="tiny material-icons left">thumb_up</i>like</div>
+            <div class="modal-trigger" data-target="comment-modal">
+              <i class="tiny material-icons left">comment</i>comment</div>
+            <div>
+              <i class="tiny material-icons left">share</i>share</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="followersandfollowings">
+
+    </div>
+{% endfor %}
+<!-- suggestion card -->
+
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,374 @@
+:root {
+    --body-bg-color: #ebeced;
+    --body-font-family: "Lato", Arial, sans-serif;
+    --search-border: 1px solid #ebeced;
+    --story-avatar-border: 1px solid #ebeced;
+    --post-border: 1px solid #ebeced;
+    --card-border: 5px solid #ebeced;
+}
+
+body {
+    background-color: var(--body-bg-color);
+    font-family: var(--body-font-family);
+}
+/* nav */
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav .nav-left {
+    width: 80%;
+}
+
+.search-icon {
+    width: 60%;
+}
+
+.search-icon a i {
+    border-bottom: var(--search-border);
+}
+
+.search-text {
+    position: absolute;
+    left: 105px;
+    top: 0px;
+}
+
+/* end of nav */
+.avatar-image {
+    border: var(--story-avatar-border);
+    padding: 0.25rem;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+/* story card */
+
+.story-card {
+    border-top: var(--card-border);
+    margin: 0px!important;
+}
+
+.story-card .card-content {
+    padding: 0.5rem 1rem;
+}
+
+.story-card .stories-header {
+    font-weight: 700;
+    padding: 0.5rem 0;
+}
+
+
+/* story section */
+.story-tabs {
+    height: 100px
+}
+
+.story-tabs .tab {
+    line-height: 15px;
+}
+
+.story-tabs p {
+    font-size: 0.9rem;
+    margin: 0px;
+    padding: 0.3rem 0;
+}
+
+
+/* creating posts */
+.post-row {
+    background-color: #fff;
+    border-top: var(--card-border);
+    padding: 1rem 0;
+    margin: 0px;
+}
+
+.post-btn-container {
+    border: var(--post-border);
+    border-radius: 50px;
+    text-align: center;
+    padding: 1.2rem 1.5rem!important;
+}
+
+.post-modal-btn-text {
+    margin: 0px;
+}
+
+.photo-icon {
+    text-align: center;
+}
+
+.photo-icon p {
+    margin: 0px;
+}
+
+.card {
+    box-shadow: none!important;
+}
+
+.card,
+.card .card-image img {
+    border-radius: 0px!important;
+}
+
+.card .card-image img {
+    height: 350px;
+}
+
+.card-header .top-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.card-header .top-row.header {
+    border-bottom: 1px solid darkgray;
+    padding-bottom: 10px;
+}
+
+.card-header .top-row-left {
+    display: flex;
+    align-items: center;
+}
+
+.user-content {
+    padding: 10px;
+}
+
+.user-content p {
+    margin: 0px;
+}
+
+/* recommended user post */
+.recommended-post .card-header .user-post,
+.suggested-card .card-header .user-post,
+.news-card .card-header .user-post,
+.text-card .card-header .user-post {
+    padding: 0 0 0 0.5rem;
+}
+
+.recommended-post .card-header .user-post .username,
+.user-post .shared-name {
+    font-weight: bold;
+}
+
+.card-header .user-post p {
+    margin: 0px;
+}
+
+.recommended-post .card-content,
+.recommended-post .card-footer {
+    padding: 0.75rem;
+}
+
+.post-stats .emojis span {
+    font-size: 1.3rem;
+    margin: 0 0.2rem;
+}
+
+.emojis .emoji {
+    border-radius: 50%;
+    padding: 3px 5px 3px 9px;
+}
+
+.emoji.like {
+    color: white;
+    background-color: blue;
+}
+
+.emoji.love {
+    color: white;
+    background-color: red;
+}
+
+.post-stats .right {
+    font-size: 0.9rem;
+    padding: 0.2rem 0 0 0;
+}
+
+/* suggested card */
+.suggested-card .card-header .header,
+.news-card .card-header .header {
+    border-bottom: var(--post-border);
+}
+
+/* suggested card */
+.suggested-card .post-ad,
+.news-card .post-article {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 0px!important;
+    color: white;
+    padding: 0.5rem;
+}
+
+.post-ad .btn-suggestion {
+    background-color: transparent;
+    border: 1px solid #757575;
+    font-size: 0.8rem;
+}
+
+.post-article h6,
+.post-ad h6 {
+    font-size: 0.9rem;
+}
+
+.post-article p,
+.post-ad p {
+    font-size: 1.1rem;
+    font-weight: bolder;
+}
+.addP{
+    overflow:hidden; 
+    background-color: #e7e3e3;
+    outline: none;
+    height: 60px;
+}
+.addP::placeholder{
+    color: #f511e2;
+}
+
+.globe {
+    top: 3px;
+    position: relative;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-footer div {
+    display: flex;
+    align-items: center;
+}
+
+
+/* post form */
+.modal {
+    min-height: 100vh;
+    width: 100%;
+}
+
+.modal-content {
+    padding: 0px !important;
+}
+
+.notification-collection,
+.friend-request-collection {
+    margin: 0px!important;
+}
+
+.post-content textarea {
+    padding: 0 0.5rem;
+    border: none;
+    font-size: 1.2rem;
+    height: 300px;
+}
+
+.btn-secondary {
+    border: 1px solid darkgray;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+
+/* profile page */
+header {
+    background-image: url('https://placeimg.com/640/680/any');
+    background-size: cover;
+    padding: 15rem 0 0 0;
+}
+
+.profile-thumbnail {
+    background-color: #fff;
+    border: 1px solid darkgrey;
+    box-shadow: 0px 1px 4px rgba(41, 51, 57, 0.5);
+    padding: 0.5rem;
+    position: relative;
+    top: -30px;
+    height: 150px;
+    width: 150px;
+}
+
+.profile-tab {
+    border-top: 1px solid darkgray;
+    border-bottom: 1px solid darkgray;
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5rem 0 0 0;
+}
+
+.profile-tab .item {
+    padding: 1rem 1.5rem;
+}
+
+.profile-name {
+    margin: 0px;
+}
+
+.profile-info {
+    padding: 0 1rem;
+}
+
+.profile-card {
+    padding: 1rem 0;
+}
+
+.row .image-grid {
+    padding: 0px;
+}
+
+.image-grid img {
+    padding: 0 0.25rem 0.25rem 0;
+}
+
+.message-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.message-container img {
+    height: 30px;
+    width: 40px;
+    margin-right: 15px;
+}
+
+.message {
+    background-color: #ebeced;
+    padding: 0px 30px;
+    border-radius: 20px;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+.message .user {
+    margin: 0px;
+    padding: 0.25rem 0;
+}
+
+.message .comment {
+    margin: 0px;
+    padding: 0.25rem 0;
+}
+
+.modal .comment-footer {
+    position: absolute;
+    bottom: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    left: 0px;
+    right: 0px;
+    height: 100px;
+}
+
+#comment-modal li {
+    padding: 0 0.25rem;
+}

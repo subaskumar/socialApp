@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link  rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Login.css' %}">
+    <title>Document</title>
+</head>
+<body> 
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-2"></div>
+            <div class="col-lg-6 col-md-8 login-box" id="LoginModal">
+                <div class="col-lg-12 login-key">
+                    <i class="fa fa-key" aria-hidden="true"></i>
+                    <span style="font-size: 16px; float: right;">
+                        Already have an account?
+                        <span class="signupSt"> <a href="{% url 'login' %}">Log in</a></span>
+                    </span>
+                </div>
+                <div class="col-lg-12 login-title">
+                    
+                </div>
+                <div class="col-lg-12 login-form">
+                    <div class="col-lg-12 login-form">
+                        <form method="post" action="{% url 'signup' %}">     
+                            {% csrf_token %}
+                            {% for field in form %}
+                                <div class="form-group">
+                                    <label class="form-control-label">{{ field.label_tag }}</label>
+                                    {{ field }}
+                                    
+                                    {% for error in field.errors %}
+                                        <p class="error" >{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                            
+                            <div class="col-lg-12 loginbttm">
+                                <div class="col-lg-6 login-btm login-text login-button">
+                                    <button type="submit" class="btn btn-outline-primary">Register</button>   
+                                </div>
+                                <div class="col-lg-6 login-btm login-button">
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-2"></div>
+            </div>              
+        </div>
+    </div>
+    <script>
+        if ( window.history.replaceState ) {
+          window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
+</body>
+</html>
