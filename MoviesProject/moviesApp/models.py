@@ -6,4 +6,5 @@ class movieUpcoming(models.Model):
     name = models.CharField(max_length=25);
     actor = models.CharField(max_length=25);
     actress = models.CharField(max_length=25);
+    budget = models.IntegerField()
     rating = models.IntegerField();
