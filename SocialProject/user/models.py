@@ -159,9 +159,3 @@ class Comment(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	time = models.DateTimeField(auto_now_add=True)
 	comm = models.TextField()
-
-class SubComment(models.Model):
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	time = models.DateTimeField(auto_now_add=True)
-	comm = models.TextField()
-	comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
